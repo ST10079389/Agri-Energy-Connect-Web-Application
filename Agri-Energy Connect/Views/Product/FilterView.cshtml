@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ST10079389_Kaushil_Dajee_PROG7311.Models.Product>
+
+@{
+    ViewData["Title"] = "FilterView";
+}
+
+
+    <h1>Welcome Back Employee</h1>
+    <h2>Dashboard</h2>
+<p>
+    @*I use this to get my value for my start date this way their is no issues with getting the date*@
+    @using (Html.BeginForm("FilterView", "Product", FormMethod.Get))
+    {
+        var moduleList = new List<SelectListItem>();
+        <b>View Between: </b>
+
+        <form>
+            <label for="start">Start Date:</label>
+            <input type="date" name="start" format="yyyy-MM-dd">
+            <label for="end">End Date:</label>
+            <input type="date" name="end" format="yyyy-MM-dd">
+            <label for="CategoryId">Category</label>
+            <select name="CategoryId" asp-items="ViewBag.Categories"></select>
+            <label for="UserId">Farmer</label>
+            <select name="UserId" asp-items="ViewBag.User"></select>
+            <input type="submit" value="Submit" style="background-color:purple; border:solid; color: white">
+        </form>
+    }
+</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Product Name
+                </th>
+                <th>
+                    Production Date
+                </th>
+                <th>
+                    Farmer
+                </th>
+                <th>
+                    Category
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductionDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                    </td>
+@*                     <td>
+                        <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                    </td> *@
+                </tr>
+            }
+        </tbody>
+    </table>

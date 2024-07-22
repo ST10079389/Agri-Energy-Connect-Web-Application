@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ST10079389_Kaushil_Dajee_PROG7311.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_FarmerLayout.cshtml";
+}
+
+<h1>Welcome Back Farmer</h1>
+<h2>Dashboard</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Production Date
+            </th>
+            <th>
+               Farmer
+            </th>
+            <th>
+                Category
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<img src="\Images\pexels-chanita-sykes-417447-1094544.jpg" style="height: 400px; display: block; margin-left: auto; margin-right: auto" />
